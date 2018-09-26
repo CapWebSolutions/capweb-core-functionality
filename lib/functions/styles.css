@@ -1,0 +1,98 @@
+/* Let’s make my Very Important Comments stand out by adding a different background color. To do that, either edit or add this to your theme’s stylesheet:
+*/
+.bypostauthor {
+background-color: #222; // style this however you want
+}
+
+/* Pricing Table
+--------------------------------------------- */
+.amount {
+	font-size: 38px;
+	text-align: center;
+}
+
+.pricing-table {
+	line-height: 1;
+}
+
+.pricing-table h4 {
+	background: none repeat scroll 0 0 #ddd;
+	border: 1px solid #ddd;
+	color: #333;
+	padding: 20px 0 30px;
+	text-align: center !important;
+	text-transform: uppercase;
+}
+
+.pricing-table .one-third {
+	background-color: #fff;
+	margin: 20px 5px;
+	padding: 40px;
+	width: 32.33%;
+}
+
+.pricing-table .one-third:nth-child(3n+1),
+.pricing-table .one-third:nth-child(3n+2),
+.pricing-table .one-third:nth-child(3n) {
+	border: 1px solid #ddd;
+}
+
+.pricing-table .one-third ul {
+	margin: 0;
+}
+
+.pricing-table ul li {
+	border-bottom: 1px solid #ddd;
+	color: #333;
+	margin-bottom: 10px;
+	padding: 10px;
+	text-align: center;
+}
+
+.pricing-table a.button {
+	background-color: #ddd;
+	border: 3px solid #fff;
+	color: #000;
+	display: block;
+	text-align: center;
+}
+
+.pricing-table a.button:hover {
+	background-color: #000;
+	border: 3px solid #000;
+	color: #fff;
+}
+
+/* Pricing Table - Media Queries for Mobile Devices
+--------------------------------------------- */
+
+@media only screen and (max-width: 1140px) {
+	.pricing-table .one-third {
+		width: 32%;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.pricing-table .one-third {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 568px) {
+	.pricing-table .one-third {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.pricing-table .one-third {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	.pricing-table .one-third {
+		width: 100%;
+		margin: 20px 0;
+	}
+}
