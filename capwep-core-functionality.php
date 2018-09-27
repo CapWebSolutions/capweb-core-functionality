@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Cap Web Solution Core Functionality 
+ * Plugin Name: Cap Web Solutions Core Functionality 
  * Plugin URI: https://github.com/billerickson/Core-Functionality
  * Description: This contains all this site's core functionality so that it is theme independent. Customized for capwebsolutions.com
  * Version: 2.0.0
@@ -17,28 +17,28 @@
  */
 
 // Plugin Directory
-define( 'BE_DIR', dirname( __FILE__ ) );
+define( 'CWS_DIR', dirname( __FILE__ ) );
 
 // Post Types
-//include_once( BE_DIR . '/lib/functions/post-types.php' );
+include_once( CWS_DIR . '/lib/functions/post-types.php' );
 
 // Taxonomies
-//include_once( BE_DIR . '/lib/functions/taxonomies.php' );
+include_once( CWS_DIR . '/lib/functions/taxonomies.php' );
 
 // Metaboxes
-//include_once( BE_DIR . '/lib/functions/metaboxes.php' );
+//include_once( CWS_DIR . '/lib/functions/metaboxes.php' );
 
 // Widgets
-//include_once( BE_DIR . '/lib/widgets/widget-social.php' );
+//include_once( CWS_DIR . '/lib/widgets/widget-social.php' );
 
 // Editor Style Refresh
-include_once( BE_DIR . '/lib/functions/editor-style-refresh.php' );
+require_once CWS_DIR . '/lib/functions/editor-style-refresh.php';
 
 // General
-include_once( BE_DIR . '/lib/functions/general.php' );
+require_once CWS_DIR . '/lib/functions/general.php';
 
 // Woo tweaks
-include_once( BE_DIR . '/lib/functions/wootweaks.php' );
+require_once CWS_DIR . '/lib/functions/wootweaks.php';
 
 // Plugin Directory.
 define( 'CORE_FUNCTION_URL', $plugin_url );

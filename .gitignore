@@ -109,5 +109,5 @@ Thumbs.db
 # track these mu-plugins, plugins, and themes
 !assets/
 !lib/
-!plugin.php
+!*.php
 !readme.txt

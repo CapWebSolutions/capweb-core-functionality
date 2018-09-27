@@ -7,48 +7,58 @@
  * @package      Core_Functionality
  * @since        1.0.0
  * @link         https://github.com/billerickson/Core-Functionality
- * @author       Bill Erickson <bill@billerickson.net>
- * @copyright    Copyright (c) 2011, Bill Erickson
+ * @author       Matt Ryan <matt@capwebsolutions.com>
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 /**
- * Create Rotator post type
+ * Create Portfolio post type
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
-function be_register_rotator_post_type() {
+function capweb_register_portfolio_post_type() {
 	$labels = array(
-		'name' => 'Rotator Items',
-		'singular_name' => 'Rotator Item',
-		'add_new' => 'Add New',
-		'add_new_item' => 'Add New Rotator Item',
-		'edit_item' => 'Edit Rotator Item',
-		'new_item' => 'New Rotator Item',
-		'view_item' => 'View Rotator Item',
-		'search_items' => 'Search Rotator Items',
-		'not_found' =>  'No rotator items found',
-		'not_found_in_trash' => 'No rotator items found in trash',
-		'parent_item_colon' => '',
-		'menu_name' => 'Rotator'
+		'name'                  => __( 'Portfolio', 'portfolio-post-type' ),
+		'singular_name'         => __( 'Portfolio Item', 'portfolio-post-type' ),
+		'menu_name'             => _x( 'Portfolio', 'admin menu', 'portfolio-post-type' ),
+		'name_admin_bar'        => _x( 'Portfolio Item', 'add new on admin bar', 'portfolio-post-type' ),
+		'add_new'               => __( 'Add New Item', 'portfolio-post-type' ),
+		'add_new_item'          => __( 'Add New Portfolio Item', 'portfolio-post-type' ),
+		'new_item'              => __( 'Add New Portfolio Item', 'portfolio-post-type' ),
+		'edit_item'             => __( 'Edit Portfolio Item', 'portfolio-post-type' ),
+		'view_item'             => __( 'View Item', 'portfolio-post-type' ),
+		'all_items'             => __( 'All Portfolio Items', 'portfolio-post-type' ),
+		'search_items'          => __( 'Search Portfolio', 'portfolio-post-type' ),
+		'parent_item_colon'     => __( 'Parent Portfolio Item:', 'portfolio-post-type' ),
+		'not_found'             => __( 'No portfolio items found', 'portfolio-post-type' ),
+		'not_found_in_trash'    => __( 'No portfolio items found in trash', 'portfolio-post-type' ),
+		'filter_items_list'     => __( 'Filter portfolio items list', 'portfolio-post-type' ),
+		'items_list_navigation' => __( 'Portfolio items list navigation', 'portfolio-post-type' ),
+		'items_list'            => __( 'Portfolio items list', 'portfolio-post-type' ),
 	);
-	
-	$args = array(
-		'labels' => $labels,
-		'public' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
-		'query_var' => true,
-		'rewrite' => true,
-		'capability_type' => 'post',
-		'has_archive' => false, 
-		'hierarchical' => false,
-		'menu_position' => null,
-		'supports' => array('title','thumbnail','excerpt')
-	); 
+	$supports = array(
+		'title',
+		'editor',
+		'excerpt',
+		'thumbnail',
+		'comments',
+		'author',
+		'custom-fields',
+		'revisions',
+	);
 
-	register_post_type( 'rotator', $args );
+	$args = array(
+		'labels'          => $labels,
+		'supports'        => $supports,
+		'public'          => true,
+		'capability_type' => 'post',
+		'rewrite'         => array( 'slug' => 'portfolio', ), // Permalinks format
+		'menu_position'   => 5,
+		'menu_icon'       => ( version_compare( $GLOBALS['wp_version'], '3.8', '>=' ) ) ? 'dashicons-portfolio' : false ,
+		'has_archive'     => true,
+	);
+
+	register_post_type( 'Portfolio', $args );
 }
-add_action( 'init', 'be_register_rotator_post_type' );	
+add_action( 'init', 'capweb_register_portfolio_post_type' );	

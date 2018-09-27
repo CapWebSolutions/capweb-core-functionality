@@ -50,7 +50,7 @@ add_filter( 'cmb_meta_boxes' , 'be_metaboxes' );
   
 function be_initialize_cmb_meta_boxes() {
 	if ( !class_exists( 'cmb_Meta_Box' ) ) {
-		require_once( BE_DIR . '/lib/metabox/init.php' );
+		require_once( CWS_DIR . '/lib/metabox/init.php' );
 	}
 }
 add_action( 'init', 'be_initialize_cmb_meta_boxes', 9999 );

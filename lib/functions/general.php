@@ -26,7 +26,7 @@
  * @param string $url, request url
  * @return array request arguments
  */
-function be_core_functionality_hidden( $r, $url ) {
+function capweb_core_functionality_hidden( $r, $url ) {
 	if ( 0 !== strpos( $url, 'http://api.wordpress.org/plugins/update-check' ) )
 		return $r; // Not a plugin update request. Bail immediately.
 	$plugins = unserialize( $r['body']['plugins'] );
@@ -35,7 +35,7 @@ function be_core_functionality_hidden( $r, $url ) {
 	$r['body']['plugins'] = serialize( $plugins );
 	return $r;
 }
-add_filter( 'http_request_args', 'be_core_functionality_hidden', 5, 2 );
+add_filter( 'http_request_args', 'capweb_core_functionality_hidden', 5, 2 );
 
 // Use shortcodes in widgets
 add_filter( 'widget_text', 'do_shortcode' );
@@ -68,7 +68,7 @@ add_filter( 'pre_option_link_manager_enabled', '__return_true' );
  * See the commented list of menu items for reference.
  *
  */
-function be_remove_menus () {
+function capweb_remove_menus () {
 	global $menu;
 	$restricted = array(__('Links'));
 	// Example:
@@ -79,18 +79,18 @@ function be_remove_menus () {
 		if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){unset($menu[key($menu)]);}
 	}
 }
-add_action( 'admin_menu', 'be_remove_menus' );
+add_action( 'admin_menu', 'capweb_remove_menus' );
 
 /**
  * Customize Admin Bar Items
  * @since 1.0.0
  * @link http://wp-snippets.com/addremove-wp-admin-bar-links/
  */
-function be_admin_bar_items() {
+function capweb_admin_bar_items() {
 	global $wp_admin_bar;
 	$wp_admin_bar->remove_menu( 'new-link', 'new-content' );
 }
-add_action( 'wp_before_admin_bar_render', 'be_admin_bar_items' );
+add_action( 'wp_before_admin_bar_render', 'capweb_admin_bar_items' );
 
 
 /**
@@ -101,7 +101,7 @@ add_action( 'wp_before_admin_bar_render', 'be_admin_bar_items' );
  * @return array $menu_ord. New order.
  *
  */
-function be_custom_menu_order( $menu_ord ) {
+function capweb_custom_menu_order( $menu_ord ) {
 	if ( !$menu_ord ) return true;
 	return array(
 		'index.php', // this represents the dashboard link
@@ -111,8 +111,8 @@ function be_custom_menu_order( $menu_ord ) {
 		'upload.php', // the media manager
     );
 }
-//add_filter( 'custom_menu_order', 'be_custom_menu_order' );
-//add_filter( 'menu_order', 'be_custom_menu_order' );
+//add_filter( 'custom_menu_order', 'capweb_custom_menu_order' );
+//add_filter( 'menu_order', 'capweb_custom_menu_order' );
 
 /**
  * Pretty Printing
@@ -122,7 +122,7 @@ function be_custom_menu_order( $menu_ord ) {
  * @param mixed
  * @return null
  */
-function be_pp( $obj, $label = '' ) {
+function capweb_pp( $obj, $label = '' ) {
 
 	$data = json_encode(print_r($obj,true));
     ?>
@@ -170,12 +170,12 @@ function be_pp( $obj, $label = '' ) {
  * Disable WPSEO Nag on Dev Server
  *
  */
-function be_disable_wpseo_nag( $options ) {
+function capweb_disable_wpseo_nag( $options ) {
 	if( strpos( site_url(), 'localhost' ) || strpos( site_url() ,'master-wp' ) )
 		$options['ignore_blog_public_warning'] = 'ignore';
 	return $options;
 }
-add_filter( 'option_wpseo', 'be_disable_wpseo_nag' );
+add_filter( 'option_wpseo', 'capweb_disable_wpseo_nag' );
 
 // Disable WPSEO columns on edit screen
 add_filter( 'wpseo_use_page_analysis', '__return_false' );
