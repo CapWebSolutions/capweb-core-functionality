@@ -5,8 +5,7 @@
  * @package      Core_Functionality
  * @since        1.0.0
  * @link         https://github.com/billerickson/Core-Functionality
- * @author       Bill Erickson <bill@billerickson.net>
- * @copyright    Copyright (c) 2011, Bill Erickson
+ * @author       Matt Ryan <matt@capwebsolutions.com>
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class BE_Social_Widget extends WP_Widget {

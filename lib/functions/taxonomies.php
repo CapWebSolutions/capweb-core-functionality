@@ -7,8 +7,7 @@
  * @package      Core_Functionality
  * @since        1.0.0
  * @link         https://github.com/billerickson/Core-Functionality
- * @author       Bill Erickson <bill@billerickson.net>
- * @copyright    Copyright (c) 2011, Bill Erickson
+ * @author       Matt Ryan <matt@capwebsolutions.com>
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
@@ -53,7 +52,7 @@ function capweb_register_portfolio_category_taxonomy() {
 		'query_var'         => true,
 	);
 
-	register_taxonomy( 'portfolio_category', $args );
+	register_taxonomy( 'portfolio_category', 'portfolio', $args );
 }
 
 function capweb_register_portfolio_tag_taxonomy() {
@@ -90,7 +89,7 @@ function capweb_register_portfolio_tag_taxonomy() {
 		'query_var'         => true,
 	);;
 
-	register_taxonomy( 'portfolio_tag', $args );
+	register_taxonomy( 'portfolio_tag', 'portfolio', $args );
 }
 
 add_action( 'init', 'capweb_register_portfolio_category_taxonomy' );

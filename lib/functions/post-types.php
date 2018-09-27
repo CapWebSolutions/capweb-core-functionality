@@ -55,10 +55,12 @@ function capweb_register_portfolio_post_type() {
 		'capability_type' => 'post',
 		'rewrite'         => array( 'slug' => 'portfolio', ), // Permalinks format
 		'menu_position'   => 5,
-		'menu_icon'       => ( version_compare( $GLOBALS['wp_version'], '3.8', '>=' ) ) ? 'dashicons-portfolio' : false ,
+		'menu_icon'       => 'dashicons-portfolio',
 		'has_archive'     => true,
 	);
 
 	register_post_type( 'Portfolio', $args );
 }
 add_action( 'init', 'capweb_register_portfolio_post_type' );	
+
+

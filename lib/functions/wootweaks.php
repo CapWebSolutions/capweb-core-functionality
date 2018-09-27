@@ -6,9 +6,8 @@
  *
  * @package      Core_Functionality
  * @since        1.0.0
- * @link         https://github.com/mattry/Core-Functionality
- * @author       Matt Ryan <matt@mattryan.co>
- * @copyright    Copyright (c) 2016, Matt Ryan
+ * @link         https://github.com/billerickson/Core-Functionality
+ * @author       Matt Ryan <matt@capwebsolutions.com>
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
