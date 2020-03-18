@@ -64,7 +64,7 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 3
  * Thanks to boxoft -
  * 	http://stackoverflow.com/questions/15303031/woocommerce-get-category-for-product-page
  * Usual free code disclaimer - use at your own risk
- * This code was tested against Woocommerce 2.0.8 and WordPress 3.5.1
+ * This code was tested against Woocommerce 4.0 and WordPress 5.3.2
  */
 
 function cws_filter_gateways($gateways) {
@@ -73,25 +73,24 @@ $payment_NAME = 'cheque'; // <--------------- change this
 $category_ID = '187';  // <----------- and this
 
  global $woocommerce;
-   // var_dump($gateways);
- foreach ($woocommerce->cart->cart_contents as $key => $values ) {
-	// Get the terms, i.e. category list using the ID of the product
-	$terms = get_the_terms( $values['product_id'], 'product_cat' );
-	// Because a product can have multiple categories, we need to iterate through the list of the products category for a match
-	foreach ($terms as $term) {
-		// 187 is the ID of the category for which we want to remove the payment gateway
-		if($term->term_id == $category_ID){
-               unset($gateways['cheque']);
-                   // If you want to remove another payment gateway, add it here i.e. unset($gateways['cod']);
-					break;
-          }
+// Seems that get_cart doesn't like to run in the admin. 3/18/20
+if ( ! is_admin() ) { 
+  $cart_items = $woocommerce->cart->get_cart();
+  foreach ( $cart_items as $key => $item ) {
+    $terms = get_the_terms( $values['product_id'], 'product_cat' );
+    // Because a product can have multiple categories, we need to iterate through the list of the products category for a match
+    foreach ($terms as $term) {
+      // 187 is the ID of the category for which we want to remove the payment gateway
+      if($term->term_id == $category_ID){
+        unset($gateways['cheque']);
+        // If you want to remove another payment gateway, add it here i.e. unset($gateways['cod']);
+        break;
+      }
 	    break;
-	}
-
+    }
    }
-   // var_dump($gateways);die();
+  }
 	return $gateways;
-
 }
 
 add_filter('woocommerce_available_payment_gateways','cws_filter_gateways');
