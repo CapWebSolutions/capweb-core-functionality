@@ -104,6 +104,8 @@ Thumbs.db
 !.gitignore
 !.editorconfig
 !README.md
+!readme.md
+!readme.txt
 !CHANGELOG.md
 !composer.json
 
