@@ -5,8 +5,8 @@
  * This file registers any custom post types
  *
  * @package      Core_Functionality
- * @since        1.0.0
- * @link         https://github.com/billerickson/Core-Functionality
+ * @since        3.0.0
+ * @link         https://github.com/CapWebSolutions/capweb-core-functionality
  * @author       Matt Ryan <matt@capwebsolutions.com>
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */

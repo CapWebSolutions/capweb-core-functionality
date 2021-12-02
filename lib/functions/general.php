@@ -2,11 +2,11 @@
 /**
  * General
  *
- * This file contains any general functions
+ * This file contains any general functions for Core Functionality.
  *
  * @package      Core_Functionality
- * @since        1.0.0
- * @link         https://github.com/billerickson/Core-Functionality
+ * @since        3.0.0
+ * @link         https://github.com/CapWebSolutions/capweb-core-functionality
  * @author       Matt Ryan <matt@capwebsolutions.com>
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
@@ -79,6 +79,35 @@ function capweb_remove_menus () {
 	}
 }
 add_action( 'admin_menu', 'capweb_remove_menus' );
+
+
+/**
+ * Reorder admin menus
+ * @since 1.0.1
+ *
+ * Reorder menu items into preferred ordering.
+ *
+ */
+function capweb_reorder_admin_menu( $menu_ord ) {
+	// Only do this for me. 
+	if ( !('capwebsolutions.com' === substr( wp_get_current_user()->user_email, -19 ) ) ) return false;
+
+	if ( !$menu_ord ) return true;   //Required to activate the custom_menu_order filter
+	
+	return array(
+		'index.php',                // Dashboard
+		'edit.php?post_type=page',  // Pages 
+		'edit.php',                 // Posts
+		'plugins.php',              // Plugins
+		'themes.php',               // Appearance
+		'tools.php',                // Tools
+		'options-general.php',      // Settings 
+		);
+ }
+
+ add_filter( 'custom_menu_order', 'capweb_reorder_admin_menu', 11, 1); //First call to activate filter
+ add_filter( 'menu_order', 'capweb_reorder_admin_menu', 11, 1);	 //Second call to do re-ordering
+
 
 /**
  * Customize Admin Bar Items
@@ -203,19 +232,11 @@ function wsm_keep_ie_modern( $headers ) {
 add_filter( 'genesis_search_text', 'sp_search_text' );
 function sp_search_text( $text ) {
 	// return esc_attr( 'Search my blog...' );
-	return esc_attr( 'Seach ' . get_bloginfo( $show, 'display' ));
+	return esc_attr( 'Seach ' . get_bloginfo( $show = '', 'display' ));
 	get_permalink();
 }
 
-//
-// Enqueue / register needed scripts
-// Load Font Awesome
-add_action( 'wp_enqueue_scripts', 'cws_enqueue_needed_scripts' );
-function cws_enqueue_needed_scripts() {
-	// font-awesome
-	// Ref: application of these fonts: https://sridharkatakam.com/using-font-awesome-wordpress/
-	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css' );
-}
+
 
 //
 // Add custom logo to login page
@@ -257,23 +278,56 @@ function disable_self_ping( &$links ) {
             unset($links[$l]);
 }
 
-add_shortcode('AffiliateDisclaimer', 'mr_affiliate_disclaimer');
+add_shortcode('AffiliateDisclaimer', 'capweb_affiliate_disclaimer');
 /**
  * Create shortcode and set content for affiliate disclosure.
  *
  * @author Matt Ryan <http://www.mattryan.co>
  * @since 1.0.0
  */
-function mr_affiliate_disclaimer() {
+function capweb_affiliate_disclaimer() {
 	    return '<em><small>Disclaimer:  Some of the off-site links referenced on this site are what is referred to as an affiliate link. If you choose to purchase or use the product or service through that link, the post author will get a small referral fee from the service or product provider. Your price is the same whether or not you use the affiliate link. </small></em>';
 }
 
 //* Change the footer text
-add_filter('genesis_footer_creds_text', 'cws_sp_footer_creds_filter');
+// add_filter('genesis_footer_creds_text', 'cws_sp_footer_creds_filter');
 function cws_sp_footer_creds_filter( $creds ) {
-  $creds = '[footer_copyright first="2013" Before="Copyright "] &middot; Cap Web Solutions LLC &middot; Built on the <a href="/go/genesis" title="Genesis Framework">Genesis Framework</a> using a \'customized by Cap Web\' <a href="/go/digital-pro" title="Digital Pro Genesis Child Theme">Digital Pro theme</a>.<br>Powered by <a href="http://wordpress.org/">WordPress</a> &middot; <a href="/privacy-policy/">Privacy Policy</a> &middot; <a href="/sitemap/">Sitemap</a><br><a target="_blank" href="https://shareasale.com/r.cfm?b=541358&amp;u=993211&amp;m=41388&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/41388/hosted_by_wp_engine2.png" border="0" alt="Hosted by WP Engine" /></a>';
+  $creds = '[footer_copyright first="2013" Before="Copyright "] &middot; Cap Web Solutions LLC &middot; Built on the <a href="/go/genesis" title="Genesis Framework">Genesis Framework</a> using a \'customized by Cap Web\' <a href="/go/digital-pro" title="Digital Pro Genesis Child Theme">Digital Pro theme</a>.<br>Powered by <a href="http://wordpress.org/">WordPress</a> &middot; <a href="/privacy-policy/">Privacy Policy</a> &middot; <a href="/sitemap/">Sitemap</a><br><a target="_blank" href="https://shareasale.com/r.cfm?b=541358&amp;u=993211&amp;m=41388&amp;urllink=&amp;afftrack="><img src="/wp-content/uploads/2019/01/hosted_by_wp_engine2.png" border="0" alt="Hosted by WP Engine" /></a>';
   return $creds;
 }
+
+
+//* Add Archive Settings option to Portolio CPT
+add_post_type_support( 'portfolio', 'genesis-cpt-archives-settings' );
+
+//* Define a custom image size for images on Portfolio archives
+add_image_size( 'portfolio', 500, 300, true );
+
+
+
+
+add_filter( 'genesis_attr_entry-header', 'capweb_add_css_attr' );
+add_filter( 'genesis_attr_entry-content', 'capweb_add_css_attr' );
+/**
+ * Add Custom Class
+ *
+ * Add custom layout width class to specific pages.
+ *
+ * @link https://capwebsolutions.com
+ *
+ * @package WordPress
+ * @since 1.0.0
+ * @license GNU General Public License 2.0+
+ */
+function capweb_add_css_attr( $attributes ) {
+    // add original plus extra CSS classes
+    if ( is_page( 'lets-work-together' ) ) $attributes['class'] .= ' custom-full-width-class';
+    
+    // return the attributes
+    return $attributes;
+}
+
+
 
 // Gravity Forms Specific Stuff =======================================
 
@@ -341,3 +395,18 @@ remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+
+/* Are we in the tree of the given page ID? */
+// $pid = The ID of the page we're looking for pages underneath
+function capweb_is_tree($pid) {
+  // load details about this page
+	global $post;
+  if( is_page() && ( $post->post_parent == $pid || is_page( $pid ) ) ) {
+    // we're at the page or at a sub page
+    return true;
+  } else {
+    // we're elsewhere
+    return false;
+  }
+};
