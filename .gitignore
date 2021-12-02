@@ -22,30 +22,12 @@
 #   this version ignores all files by default
 # -----------------------------------------------------------------
 
-# ignore everything in the root except the "wp-content" directory.
+# ignore everything in the root of our project.
 /*
-!wp-content/
-
-# ignore everything in the "wp-content" directory, except:
-# mu-plugins, plugins, and themes directories
-wp-content/*
-!wp-content/mu-plugins/
-!wp-content/plugins/
-!wp-content/themes/
-
-# ignore all mu-plugins, plugins, and themes
-# unless explicitly whitelisted at the end of this file
-wp-content/mu-plugins/*
-wp-content/plugins/*
-wp-content/themes/*
 
 # ignore all files starting with . or ~
 .*
 ~*
-
-# ignore all files starting or ending with string HOLD
-HOLD*.*
-*.*HOLD
 
 # ignore node dependency directories (used by grunt)
 node_modules/
@@ -82,8 +64,37 @@ Thumbs.db
 *.tar
 *.zip
 
-# ignore random stuff
-.DS_Store
+# ignore extraneous large/disallowed file types (ala WP Engine)
+# a CDN should be used for these
+*.hqx
+*.bin
+*.deb
+*.dmg
+*.img
+*.msi
+*.msp
+*.msm
+*.mid
+*.midi
+*.kar
+*.mp3
+*.ogg
+*.m4a
+*.ra
+*.3gpp
+*.3gp
+*.mp4
+*.mpeg
+*.mpg
+*.mov
+*.webm
+*.flv
+*.m4v
+*.mng
+*.asx
+*.asf
+*.wmv
+*.avi
 
 # -------------------------
 # BEGIN Whitelisted Files
@@ -107,7 +118,5 @@ Thumbs.db
 !safari-pinned-tab.svg
 
 # track these mu-plugins, plugins, and themes
-!assets/
-!lib/
-!*.php
-!readme.txt
+# add your own entries here
+!wp-content/plugins/capweb-core-functionality/
