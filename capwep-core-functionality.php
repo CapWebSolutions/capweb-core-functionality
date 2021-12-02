@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Cap Web Solutions Core Functionality 
- * Plugin URI: https://github.com/CapWebSolutions/Core-Functionality
- * Description: This contains all this site's core functionality so that it is theme independent. Customized for capwebsolutions.com
- * Version: 3.0.0
+ * Plugin URI: https://github.com/CapWebSolutions/capweb-core-functionality
+ * Description: This contains all this site's core functionality so that it is theme independent.
+ * Version: 3.0.1
  * Author: Matt Ryan [Cap Web Solutions]
- * Author URI: https://github.com/CapWebSolutions/capweb-core-functionality
+ * Author URI: https://capwebsolutions.com
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
  * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume
