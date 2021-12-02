@@ -34,12 +34,6 @@ require_once CORE_FUNCTION_DIR . '/lib/functions/post-types.php';
 // Taxonomies
 include_once( CORE_FUNCTION_DIR . '/lib/functions/taxonomies.php' );
 
-// Metaboxes
-//include_once( CORE_FUNCTION_DIR . '/lib/functions/metaboxes.php' );
-
-// Widgets
-// include_once( CORE_FUNCTION_DIR . '/lib/widgets/widget-social.php' );
-
 // Editor Style Refresh
 require_once CORE_FUNCTION_DIR . '/lib/functions/editor-style-refresh.php';
 
