@@ -410,3 +410,43 @@ function capweb_is_tree($pid) {
     return false;
   }
 };
+
+
+// Reorder icons in Simple Social Icons plugin
+
+add_filter( 'simple_social_default_profiles', 'capweb_custom_reorder_simple_icons' );
+
+function capweb_custom_reorder_simple_icons( $icons ) {
+
+	// Set your new order here
+	$new_icon_order = array(
+		'twitter'     => '',
+		'facebook'    => '',
+		'github'      => '',
+		'linkedin'    => '',
+		'youtube'     => '',
+		'behance'     => '',
+		'bloglovin'   => '',
+		'dribbble'    => '',
+		'email'       => '',
+		'flickr'      => '',
+		'gplus'       => '',
+		'instagram'   => '',
+		'medium'      => '',
+		'periscope'   => '',
+		'phone'       => '',
+		'pinterest'   => '',
+		'rss'         => '',
+		'snapchat'    => '',
+		'stumbleupon' => '',
+		'tumblr'      => '',
+		'vimeo'       => '',
+		'xing'        => '',
+	);
+
+	foreach( $new_icon_order as $icon => $icon_info ) {
+		$new_icon_order[ $icon ] = $icons[ $icon ];
+	}
+
+	return $new_icon_order;
+}
