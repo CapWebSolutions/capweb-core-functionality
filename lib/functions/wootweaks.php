@@ -23,6 +23,17 @@ function woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
 
+/**
+ * @snippet       Show Hidden Custom Fields @ WooCommerce Product / Order Edit
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 5.1
+ * @donate $9     https://businessbloomer.com/bloomer-armada/
+ * @link          https://www.businessbloomer.com/woocommerce-view-product-hidden-custom-fields-protected-meta
+ */
+ 
+add_filter( 'is_protected_meta', '__return_false' ); 
+
 // Add Product Direct to Checkout
 // Source: http://www.remicorson.com/woocommerce-skip-product-cart-pages/
 add_filter ('woocommerce_add_to_cart_redirect', 'capweb_redirect_to_checkout');
