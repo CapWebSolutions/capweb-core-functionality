@@ -5,7 +5,7 @@
  * Description: This contains all this site's core functionality so that it
  *  is theme independent.
  * 
- * @version: 3.16.1
+ * @version: 3.17.0
  * @author:  Matt Ryan [Cap Web Solutions]
  * @link:    https://capwebsolutions.com
  *
@@ -47,6 +47,8 @@ require_once CORE_FUNCTION_DIR . '/lib/functions/general.php';
 // Woo tweaks. Only if WooCommerce active.
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	include_once( CORE_FUNCTION_DIR . '/lib/functions/wootweaks.php' );
+	// include_once( CORE_FUNCTION_DIR . '/lib/functions/wootweaks-emails.php' );
+	include_once( CORE_FUNCTION_DIR . '/lib/functions/wootweaks-snippets.php' );
 }
 // Gravity Forms tweaks. .
 include_once( CORE_FUNCTION_DIR . '/lib/functions/gravitytweaks.php' );
