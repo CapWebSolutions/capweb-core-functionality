@@ -423,26 +423,8 @@ function capweb_custom_reorder_simple_icons( $icons ) {
 		'twitter'     => '',
 		'facebook'    => '',
 		'github'      => '',
-		'linkedin'    => '',
-		'youtube'     => '',
-		'behance'     => '',
-		'bloglovin'   => '',
-		'dribbble'    => '',
-		'email'       => '',
-		'flickr'      => '',
-		'gplus'       => '',
-		'instagram'   => '',
-		'medium'      => '',
-		'periscope'   => '',
-		'phone'       => '',
-		'pinterest'   => '',
-		'rss'         => '',
-		'snapchat'    => '',
-		'stumbleupon' => '',
-		'tumblr'      => '',
-		'vimeo'       => '',
-		'xing'        => '',
-	);
+		'linkedin'    => ''
+  	);
 
 	foreach( $new_icon_order as $icon => $icon_info ) {
 		$new_icon_order[ $icon ] = $icons[ $icon ];
