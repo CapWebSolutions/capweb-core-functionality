@@ -47,6 +47,8 @@ require_once CORE_FUNCTION_DIR . '/lib/functions/general.php';
 // Woo tweaks. Only if WooCommerce active.
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	include_once( CORE_FUNCTION_DIR . '/lib/functions/wootweaks.php' );
+	// include_once( CORE_FUNCTION_DIR . '/lib/functions/wootweaks-emails.php' );
+	include_once( CORE_FUNCTION_DIR . '/lib/functions/wootweaks-snippets.php' );
 }
 // Gravity Forms tweaks. .
 include_once( CORE_FUNCTION_DIR . '/lib/functions/gravitytweaks.php' );
@@ -62,5 +64,5 @@ function core_functionality_enqueue_needed_scripts() {
    wp_enqueue_style( 'core_funct-style', CORE_FUNCTION_URL . 'assets/css/capweb-core-style.css', array( 'jquery' ), '' );
 
 	// Ref: application of these fonts: https://sridharkatakam.com/using-font-awesome-wordpress/
-	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css', array( 'jquery' ), CHILD_THEME_VERSION, true );
+	// wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css', array( 'jquery' ), CHILD_THEME_VERSION, true );
 }
