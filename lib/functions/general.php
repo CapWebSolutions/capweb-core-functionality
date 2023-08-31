@@ -432,3 +432,14 @@ function capweb_custom_reorder_simple_icons( $icons ) {
 
 	return $new_icon_order;
 }
+
+/**
+ * Display Posts, open links in a new window
+ * @see https://displayposts.com/2019/02/20/open-links-in-a-new-window/
+ *
+ */
+function be_dps_links_new_window( $output ) {
+	$output = str_replace( 'href="', 'target="_blank" href="', $output );
+	return $output;
+}
+add_filter( 'display_posts_shortcode_output', 'be_dps_links_new_window' );
