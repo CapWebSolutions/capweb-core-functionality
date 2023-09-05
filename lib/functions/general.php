@@ -236,18 +236,6 @@ function sp_search_text( $text ) {
 	get_permalink();
 }
 
-
-
-//
-// Add custom logo to login page
-// Requires a transparent logo file in the theme's images folder named 'login_logo.png'
-add_action('login_head', 'custom_loginlogo');
-function custom_loginlogo() {
-echo '<style type="text/css">
-h1 a {background-image: url('.get_bloginfo('template_directory').'/images/login_logo.png) !important; }
-</style>';
-}
-
 // Custom avatar_size
 add_filter( 'avatar_defaults', 'add_custom_gravatar' );
 function add_custom_gravatar( $avatar_defaults ) {
