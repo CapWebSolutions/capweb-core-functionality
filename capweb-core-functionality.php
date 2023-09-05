@@ -53,6 +53,10 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 // Gravity Forms tweaks. .
 include_once( CORE_FUNCTION_DIR . '/lib/functions/gravitytweaks.php' );
 
+
+// Custom Login
+require_once CORE_FUNCTION_DIR . '/lib/functions/custom-login.php';
+
 //
 // Enqueue / register needed scripts & styles
 add_action( 'wp_enqueue_scripts', 'core_functionality_enqueue_needed_scripts' );
