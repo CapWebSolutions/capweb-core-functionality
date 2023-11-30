@@ -359,20 +359,39 @@ function cws_custom_headers_filter_function($headers, $object) {
 add_filter( 'woocommerce_available_payment_gateways', 'bcws_unset_gateway_by_category' );
 
 function bcws_unset_gateway_by_category( $available_gateways ) {
-global $woocommerce;
-$unset = false;
-$category_ids = array( 237 );
-foreach ( $woocommerce->cart->cart_contents as $key => $values ) {
-   $terms = get_the_terms( $values['product_id'], 'product_cat' );    
-   foreach ( $terms as $term ) {        
-       if ( in_array( $term->term_id, $category_ids ) ) {
-           $unset = true;
-           break;
-       }
-   }
-}
-   if ( $unset == true ) unset( $available_gateways['cheque'] );
-   return $available_gateways;
+// global $woocommerce;
+// $unset = false;
+// $category_ids = array( 237 );
+
+// Below line generating PHP 8.1 & 8.0 Warnings.  11.30.2023
+// Warning (Suppressed)	Attempt to read property "cart_contents" on null	
+// Warning (Suppressed)	foreach() argument must be of type array|object, null given
+
+// foreach ( $woocommerce->cart->cart_contents as $key => $values ) {
+//    $terms = get_the_terms( $values['product_id'], 'product_cat' );    
+//    foreach ( $terms as $term ) {        
+//        if ( in_array( $term->term_id, $category_ids ) ) {
+//            $unset = true;
+//            break;
+//        }
+//    }
+// }
+  if ( is_admin() ) return $available_gateways;
+  if ( ! is_checkout() ) return $available_gateways;
+  $unset = false;
+  $category_id = 237; // TARGET CATEGORY
+  foreach ( WC()->cart->get_cart_contents() as $key => $values ) {
+      $terms = get_the_terms( $values['product_id'], 'product_cat' );    
+      foreach ( $terms as $term ) {        
+          if ( $term->term_id == $category_id ) {
+              $unset = true; // CATEGORY IS IN THE CART
+              break;
+          }
+      }
+  }
+
+  if ( $unset == true ) unset( $available_gateways['cheque'] );
+  return $available_gateways;
 }
 
 
