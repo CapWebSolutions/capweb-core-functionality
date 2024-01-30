@@ -1,3 +1,208 @@
 /*
     User custom styles
 */
+
+
+/*  Let's recreate the min needed symple styles for this site. */
+
+.cws-symple-box {
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    background: #333;
+    margin: 0 auto;
+    float: none;
+    display: block;
+    padding: 15px 20px;
+    font-size: 1em;
+    border-radius: 2px;
+    border: 1px solid #999;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/* v2 ala Carrie Dils  */
+
+.content-box-blue,
+.content-box-gray,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow {
+    text-align: center;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.content-box-blue {
+    background-color: #d8ecf7;
+    border: 1px solid #afcde3;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/* Symple Toggle
+/*-----------------------------------------------------------------------------------*/
+
+#accordion-front,
+#accordian-page-id-1270 {
+    margin-top: 0.3em;
+}
+
+.cws-symple-clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.cws-symple-fadein {
+    opacity: 0;
+}
+
+.cws-symple-toggle .cws-symple-toggle-trigger {
+    display: block;
+    color: #555;
+    padding: 15px 15px 15px 37px;
+    border: 1px solid #ddd;
+    background: #f9f9f9 url("../images/minus.png") no-repeat 15px center;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.cws-symple-toggle .cws-symple-toggle-trigger:hover {
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.cws-symple-toggle .cws-symple-toggle-trigger:active,
+.cws-symple-toggle .cws-symple-toggle-trigger:hover {
+    color: #000;
+    background-color: #eee;
+    background-image: url("../images/plus.png");
+    text-decoration: none;
+}
+
+.cws-symple-toggle .cws-symple-toggle-container {
+    display: none;
+    overflow: hidden;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+.cws-symple-toggle.state-open .cws-symple-toggle-container {
+    display: block;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/* Symple Callout - 1.4
+/*-----------------------------------------------------------------------------------*/
+
+.cws-symple-callout {
+    padding: 20px 30px;
+    background: #f1f1f1;
+    position: relative;
+    border-radius: 3px;
+}
+
+.cws-symple-callout-caption {
+    float: left;
+    font-size: 1.6em;
+    font-weight: 400;
+    width: 80%;
+    color: #555;
+}
+
+.cws-symple-callout-button {
+    float: right;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/* Tweak Bookly Styles
+ * Since 9.2
+ * /*-----------------------------------------------------------------------------------*/
+
+.ab-columnizer .ab-available-day {
+    font-weight: normal !important;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/* Woocommerce Tweaks
+/*-----------------------------------------------------------------------------------*/
+
+#add_payment_method .wc-proceed-to-checkout a.checkout-button,
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
+.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button {
+    font-size: 1em;
+}
+
+.woocommerce #respond input#submit,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button {
+    font-size: 75% !important;
+}
+
+.woocommerce div#payment>ul.wc_payment_methods>li {
+    list-style-type: none;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/* Forms Tweaks
+/*-----------------------------------------------------------------------------------*/
+
+.form-hr {
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/* Misc Tweaks
+/*-----------------------------------------------------------------------------------*/
+
+.smallcaps {
+    text-transform: uppercase;
+    font-size: xx-small;
+}
+
+
+/* Issues with anchor tags on How I Do It page */
+
+h4>a::before {
+    display: block;
+    content: " ";
+    margin-top: -120px;
+    height: 120px;
+    visibility: hidden;
+    pointer-events: none;
+}

@@ -5,7 +5,7 @@
  * Description: This contains all this site's core functionality so that it
  *  is theme independent.
  * 
- * @version: 3.17.0
+ * @version: 3.64.0
  * @author:  Matt Ryan [Cap Web Solutions]
  * @link:    https://capwebsolutions.com
  *
@@ -30,6 +30,7 @@ if ( is_ssl() ) {
 }
 define( 'CORE_FUNCTION_URL', $plugin_url );
 define( 'CORE_FUNCTION_DIR', plugin_dir_path( __FILE__ ) );
+define( 'CORE_FUNCTIONALITY_PLUGIN_VERSION',get_plugin_data(__FILE__ )['Version'] ); 
 
 
 // Post Types
@@ -43,6 +44,7 @@ require_once CORE_FUNCTION_DIR . '/lib/functions/editor-style-refresh.php';
 
 // General
 require_once CORE_FUNCTION_DIR . '/lib/functions/general.php';
+require_once CORE_FUNCTION_DIR . '/lib/functions/login-logout.php';
 
 // Woo tweaks. Only if WooCommerce active.
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
@@ -53,20 +55,16 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 // Gravity Forms tweaks. .
 include_once( CORE_FUNCTION_DIR . '/lib/functions/gravitytweaks.php' );
 
-
-// Custom Login
-require_once CORE_FUNCTION_DIR . '/lib/functions/custom-login.php';
-
 //
 // Enqueue / register needed scripts & styles
 add_action( 'wp_enqueue_scripts', 'core_functionality_enqueue_needed_scripts' );
 add_action( 'admin_enqueue_scripts', 'core_functionality_enqueue_needed_scripts' );
 function core_functionality_enqueue_needed_scripts() {
-   wp_enqueue_script( 'jstz-script', CORE_FUNCTION_URL . 'assets/js/jstz.min.js', array(), null, true );
-   wp_enqueue_script( 'core-funct-jquery', CORE_FUNCTION_URL . 'assets/js/capweb-core-jquery.js', array( 'jquery' ), '' );
+   wp_enqueue_script( 'jstz-script', CORE_FUNCTION_URL . 'assets/js/jstz.min.js', array(), NULL, 'defer' );
+   wp_enqueue_script( 'core-funct-jquery', CORE_FUNCTION_URL . 'assets/js/capweb-core-jquery.js', array(), NULL, 'defer' );
    
-   wp_enqueue_style( 'core_funct-style', CORE_FUNCTION_URL . 'assets/css/capweb-core-style.css', array( 'jquery' ), '' );
+   wp_enqueue_style( 'core_funct-style', CORE_FUNCTION_URL . 'assets/css/capweb-core-style.css', array(), CORE_FUNCTIONALITY_PLUGIN_VERSION, 'all' );
 
 	// Ref: application of these fonts: https://sridharkatakam.com/using-font-awesome-wordpress/
-	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css', array( 'jquery' ), CHILD_THEME_VERSION, true );
+	// wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css', array( 'jquery' ), CHILD_THEME_VERSION, true );
 }

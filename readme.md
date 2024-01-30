@@ -9,14 +9,7 @@ Based substantially on work done by others.
 
 This plugin is being maintained in its own repo as of v 3.0.1 so as to reduce complexity of website project. 
 
-# Changelog
-## [3.17.0] - 02/19/2023 
-- Move code snippets plugin's snippets to here. 
-- Remove unneeded array itmes from Simple Social Icons list. 
-## [3.16.1] - 03/16/2022
- - think I have this git thing working. now off to the races 
-## [3.0.1] - Thu Dec  2 2021
- - Merging of live plugin back into Github repo to preserve history. 
- - Remove extraneous code that is not being used. 
- - Originally this was pulled in with the starter plugin and never removed. 
- - Set up for the next big iteration of the website and subsequent changes to the core functionality plugin. 
+## Changelog
+### 3.64.0 - 2024-01-30 Adjust image location for icon. Add image folder with icons.
+### 3.16.1 - 03/16/2022 - think I have this git thing working. now off to the races 
+### 3.0.1 - Thu Dec  2 2021 - Merging of live plugin back into Github repo to preserve history. Remove extraneous code tht is not being used. Originally this was pulled in with the starter plugin and never removed. Getting set up for the next big iteration of the website and subsequent changes to the core functionality plugin. 
