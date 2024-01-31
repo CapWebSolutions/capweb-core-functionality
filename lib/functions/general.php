@@ -5,7 +5,7 @@
  * This file contains any general functions for Core Functionality.
  *
  * @package      Core_Functionality
- * @since        3.0.0
+ * @since        1.0.0
  * @link         https://github.com/CapWebSolutions/capweb-core-functionality
  * @author       Matt Ryan <matt@capwebsolutions.com>
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -398,28 +398,6 @@ function capweb_is_tree($pid) {
     return false;
   }
 };
-
-
-// Reorder icons in Simple Social Icons plugin
-
-add_filter( 'simple_social_default_profiles', 'capweb_custom_reorder_simple_icons' );
-
-function capweb_custom_reorder_simple_icons( $icons ) {
-
-	// Set your new order here
-	$new_icon_order = array(
-		'twitter'     => '',
-		'facebook'    => '',
-		'github'      => '',
-		'linkedin'    => ''
-  	);
-
-	foreach( $new_icon_order as $icon => $icon_info ) {
-		$new_icon_order[ $icon ] = $icons[ $icon ];
-	}
-
-	return $new_icon_order;
-}
 
 /**
  * Display Posts, open links in a new window
