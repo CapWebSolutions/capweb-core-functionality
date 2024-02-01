@@ -18,8 +18,8 @@
 
 // Declare general WooCommerce Support
 // Source: http://docs.woothemes.com/document/third-party-custom-theme-compatibility/
-add_action( 'after_setup_theme', 'woocommerce_support' );
-function woocommerce_support() {
+add_action( 'after_setup_theme', 'capweb_woocommerce_support' );
+function capweb_woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
 
@@ -48,10 +48,10 @@ function capweb_redirect_to_checkout() {
 /*
  * wc_remove_related_products
  */
-function wc_remove_related_products( $args ) {
+function capweb_wc_remove_related_products( $args ) {
   return array();
 }
-add_filter('woocommerce_related_products_args','wc_remove_related_products', 10);
+add_filter('woocommerce_related_products_args','capweb_wc_remove_related_products', 10);
 
 // Remove payment gateway for named product category
 // Courtesy: https://wordpress.org/support/topic/restrict-payment-options-based-on-product
@@ -74,9 +74,9 @@ add_filter('woocommerce_related_products_args','wc_remove_related_products', 10)
  * Usual free code disclaimer - use at your own risk
  * This code was tested against Woocommerce 4.0 and WordPress 5.3.2
  */
-// add_filter('woocommerce_available_payment_gateways','cws_filter_gateways');
+// add_filter('woocommerce_available_payment_gateways','capweb_filter_gateways');
 
-function cws_filter_gateways($gateways) {
+function capweb_filter_gateways($gateways) {
   $payment_NAME = 'cheque'; // <--------------- change this
   $category_ID = '187';  // <----------- and this
   // 10/14/2020 - pulled this out. We don't even have product category 187 any more. 
@@ -110,9 +110,9 @@ function cws_filter_gateways($gateways) {
  * https://www.skyverge.com/blog/how-to-set-woocommerce-virtual-order-status-to-complete-after-payment/
  */
 
-add_filter( 'woocommerce_payment_complete_order_status', 'virtual_order_payment_complete_order_status', 10, 2 );
+add_filter( 'woocommerce_payment_complete_order_status', 'capweb_virtual_order_payment_complete_order_status', 10, 2 );
  
-function virtual_order_payment_complete_order_status( $order_status, $order_id ) {
+function capweb_virtual_order_payment_complete_order_status( $order_status, $order_id ) {
   $order = new WC_Order( $order_id );
  
   if ( 'processing' == $order_status &&
@@ -155,9 +155,9 @@ function virtual_order_payment_complete_order_status( $order_status, $order_id )
  * @compatible    WooCommerce 3.1.1
  */
  
-add_action( 'product_cat_pre_add_form', 'bcws_list_all_product_cat_ids', 5 );
+add_action( 'product_cat_pre_add_form', 'capweb_list_all_product_cat_ids', 5 );
  
-function bcws_list_all_product_cat_ids() {
+function capweb_list_all_product_cat_ids() {
  
 $ids = '';
  
@@ -185,25 +185,26 @@ function capweb_woo_add_order_notes_to_email() {
 	);
 	$notes = get_comments( $args );
 	
-  echo '<hr style="height:5px;border-width:0;color:#CCAA97;background-color:#CCAA97">';
-  echo '<h2>' . __( 'NEXT STEPS', 'woocommerce' ) . '</h2>';
-	echo '<ul class="order_notes">';
-	if ( $notes ) {
-		foreach( $notes as $note ) {
+  if ( $notes ) {
+    echo '<hr style="height:5px;border-width:0;color:#546E91;background-color:#546E91">';
+    echo '<h2>' . __( 'NOTES', 'woocommerce' ) . '</h2>';
+    echo '<ul class="order_notes">';
+    foreach( $notes as $note ) {
 			$note_classes = get_comment_meta( $note->comment_ID, 'is_customer_note', true ) ? array( 'customer-note', 'note' ) : array( 'note' );
 			?>
 			<li rel="<?php echo absint( $note->comment_ID ) ; ?>" class="<?php echo implode( ' ', $note_classes ); ?>">
 				<div class="note_content">
-					(<?php printf( __( 'added %s ago', 'woocommerce' ), human_time_diff( strtotime( $note->comment_date_gmt ), current_time( 'timestamp', 1 ) ) ); ?>) <?php echo wpautop( wptexturize( wp_kses_post( $note->comment_content ) ) ); ?>
+					<?php printf( __( 'added %s ago', 'woocommerce' ), human_time_diff( strtotime( $note->comment_date_gmt ), current_time( 'timestamp', 1 ) ) ); ?>) <?php echo wpautop( wptexturize( wp_kses_post( $note->comment_content ) ) ); ?>
 				</div>
 			</li>
 			<?php
 		}
-	} else {
-		echo '<li class="order-note-highlight">' . __( 'If not already provided, please send us your website details so that we can start to work on your website. Visit <a href="https://capwebsolutions.com/contact/provide-website-maintenance-credentials/">Provide Website Credentials</a>.', 'woocommerce' ) . '</li>';
+    echo '</ul>';
+    echo '<hr style="height:5px;border-width:0;color:#546E91;background-color:#546E91;margin-bottom: 5px;">';
+	// } else {
+		// echo '<li class="order-note-highlight">' . __( 'If not already provided, please send us your website details so that we can start to work on your website. Visit <a href="https://capwebsolutions.com/contact/provide-website-maintenance-credentials/">Provide Website Credentials</a>.', 'woocommerce' ) . '</li>';
 	}
-  echo '</ul>';
-  echo '<hr style="height:5px;border-width:0;color:#CCAA97;background-color:#CCAA97;margin-bottom: 5px;">';
+
 }
 
 
@@ -214,9 +215,9 @@ function capweb_woo_add_order_notes_to_email() {
  * @testedwith    WooCommerce 3.8
  */
   
-add_action( 'woocommerce_before_order_notes', 'capweb_bcws_add_custom_checkout_field' );
+add_action( 'woocommerce_before_order_notes', 'capweb_add_custom_checkout_field' );
   
-function capweb_bcws_add_custom_checkout_field( $checkout ) { 
+function capweb_add_custom_checkout_field( $checkout ) { 
    $current_user = wp_get_current_user();
    $saved_target_website = $current_user->target_website;
    woocommerce_form_field( 'target_website', array(        
@@ -235,9 +236,9 @@ function capweb_bcws_add_custom_checkout_field( $checkout ) {
  * @testedwith    WooCommerce 3.8
  */
  
-add_action( 'woocommerce_checkout_process', 'capweb_bcws_validate_new_checkout_field' );
+add_action( 'woocommerce_checkout_process', 'capweb_validate_new_checkout_field' );
   
-function capweb_bcws_validate_new_checkout_field() {    
+function capweb_validate_new_checkout_field() {    
    if ( ! $_POST['target_website'] ) {
       wc_add_notice( 'Please enter the web address for this WPcare service.', 'error' );
    }
@@ -251,22 +252,22 @@ function capweb_bcws_validate_new_checkout_field() {
  * @donate $9     https://businessbloomer.com/bloomer-armada/
  */
  
-add_action( 'woocommerce_checkout_update_order_meta', 'capweb_bcws_save_new_checkout_field' );
+add_action( 'woocommerce_checkout_update_order_meta', 'capweb_save_new_checkout_field' );
  
-function capweb_bcws_save_new_checkout_field( $order_id ) { 
+function capweb_save_new_checkout_field( $order_id ) { 
     if ( $_POST['target_website'] ) update_post_meta( $order_id, '_target_website', esc_attr( $_POST['target_website'] ) );
 }
   
-add_action( 'woocommerce_admin_order_data_after_billing_address', 'capweb_bcws_show_new_checkout_field_order', 10, 1 );
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'capweb_show_new_checkout_field_order', 10, 1 );
    
-function capweb_bcws_show_new_checkout_field_order( $order ) {    
+function capweb_show_new_checkout_field_order( $order ) {    
    $order_id = $order->get_id();
    if ( get_post_meta( $order_id, '_target_website', true ) ) echo '<p><strong>Target Website:</strong> ' . get_post_meta( $order_id, '_target_website', true ) . '</p>';
 }
  
-add_action( 'woocommerce_email_after_order_table', 'capweb_bcws_show_new_checkout_field_emails', 20, 4 );
+add_action( 'woocommerce_email_after_order_table', 'capweb_show_new_checkout_field_emails', 20, 4 );
   
-function capweb_bcws_show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $email ) {
+function capweb_show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $email ) {
     if ( get_post_meta( $order->get_id(), '_target_website', true ) ) 
       echo '<p>WPcare Support on Website: ' . get_post_meta( $order->get_id(), '_target_website', true ) . '</p>';
 }
@@ -280,9 +281,9 @@ function capweb_bcws_show_new_checkout_field_emails( $order, $sent_to_admin, $pl
  * @donate $9     https://businessbloomer.com/bloomer-armada/
  */
  
-// add_filter( 'woocommerce_email_headers', 'cap_web_bcws_order_completed_email_add_cc_bcc', 9999, 3 );
+// add_filter( 'woocommerce_email_headers', 'capweb_order_completed_email_add_cc_bcc', 9999, 3 );
  
-function cap_web_bcws_order_completed_email_add_cc_bcc( $headers, $email_id, $order ) {
+function capweb_order_completed_email_add_cc_bcc( $headers, $email_id, $order ) {
 //*    if ( 'customer_completed_order' == $email_id || 'customer_completed_renewal_order' == $email_id ) {  
         // $headers .= "Cc: Name <your@email.com>" . "\r\n"; // del if not needed
         $headers .= "Bcc: Matt <matt+order@capwebsolutions.com>" . "\r\n"; // del if not needed
@@ -299,9 +300,9 @@ function cap_web_bcws_order_completed_email_add_cc_bcc( $headers, $email_id, $or
  * @donate $9     https://businessbloomer.com/bloomer-armada/
  */
   
-add_action( 'woocommerce_email_before_order_table', 'bcws_add_content_specific_email', 20, 4 );
+add_action( 'woocommerce_email_before_order_table', 'capweb_add_content_specific_email', 20, 4 );
   
-function bcws_add_content_specific_email( $order, $sent_to_admin, $plain_text, $email ) {
+function capweb_add_content_specific_email( $order, $sent_to_admin, $plain_text, $email ) {
   if ( $email->id == 'customer_completed_renewal_order' ) {
       if ( get_post_meta( $order->get_id(), '_target_website', true ) ) 
       echo '<p>WPcare Support on Website: ' . get_post_meta( $order->get_id(), '_target_website', true ) . '</p>';
@@ -310,17 +311,17 @@ function bcws_add_content_specific_email( $order, $sent_to_admin, $plain_text, $
 
 
 // Changes on 3/1 after failure. Change number of args from 4->2. Change args to $subject, $order
-// add_action( 'woocommerce_subscriptions_email_subject_customer_completed_renewal_order', 'cap_web_add_target_website_to_subject', 20, 2 );
+// add_action( 'woocommerce_subscriptions_email_subject_customer_completed_renewal_order', 'capweb_add_target_website_to_subject', 20, 2 );
   
-function cap_web_add_target_website_to_subject( $subject, $order ) {
+function capweb_add_target_website_to_subject( $subject, $order ) {
       if ( get_post_meta( $order->get_id(), '_target_website', true ) ) {
         return $subject .= $subject . get_post_meta( $order->get_id(), '_target_website', true );
       }
 }
 
 
-add_filter( 'woocommerce_hidden_order_itemmeta', 'add_hidden_order_items' );
-function add_hidden_order_items( $order_items ) {
+add_filter( 'woocommerce_hidden_order_itemmeta', 'capweb_add_hidden_order_items' );
+function capweb_add_hidden_order_items( $order_items ) {
     $order_items[] = '_subscription_interval';
     $order_items[] = '_subscription_length';
     $order_items[] = '_subscription_period';
@@ -340,9 +341,9 @@ function add_hidden_order_items( $order_items ) {
 /**
  * Add a BCC email address to ALL WC emails
  */
-add_filter( 'woocommerce_email_headers', 'cws_custom_headers_filter_function', 10, 2);
+add_filter( 'woocommerce_email_headers', 'capweb_custom_headers_filter_function', 10, 2);
 
-function cws_custom_headers_filter_function($headers, $object) {
+function capweb_custom_headers_filter_function($headers, $object) {
     $headers = array();
     $headers[] = 'Bcc: info@capwebsolutions.com';
     $headers[] = 'Content-Type: text/html';
@@ -356,9 +357,9 @@ function cws_custom_headers_filter_function($headers, $object) {
  * @testedwith    WooCommerce 3.2.5
  */
  
-add_filter( 'woocommerce_available_payment_gateways', 'bcws_unset_gateway_by_category' );
+add_filter( 'woocommerce_available_payment_gateways', 'capweb_unset_gateway_by_category' );
 
-function bcws_unset_gateway_by_category( $available_gateways ) {
+function capweb_unset_gateway_by_category( $available_gateways ) {
 // global $woocommerce;
 // $unset = false;
 // $category_ids = array( 237 );
@@ -492,7 +493,7 @@ function capweb_woocommerce_coupon_links(){
 
 
 // Set minimum quantity per product before checking out
-add_action( 'woocommerce_check_cart_items', 'cws_set_min_qty_per_product' );
+add_action( 'woocommerce_check_cart_items', 'capweb_set_min_qty_per_product' );
 /**
  * Set minimum quantity per product
  * @link https://www.sitepoint.com/minimum-checkout-requirements-in-woocommerce/
@@ -501,7 +502,7 @@ add_action( 'woocommerce_check_cart_items', 'cws_set_min_qty_per_product' );
  *
  * @return void
  */
-function cws_set_min_qty_per_product() {
+function capweb_set_min_qty_per_product() {
 	// Only run in the Cart or Checkout pages
 	if( is_cart() || is_checkout() ) {	
 		global $woocommerce;
@@ -563,9 +564,9 @@ function cws_set_min_qty_per_product() {
  *
  */
   
-add_filter( 'woocommerce_quantity_input_args', 'cws_woocommerce_quantity_changes', 10, 2 );
+add_filter( 'woocommerce_quantity_input_args', 'capweb_woocommerce_quantity_changes', 10, 2 );
    
-function cws_woocommerce_quantity_changes( $args, $product ) {
+function capweb_woocommerce_quantity_changes( $args, $product ) {
    
   // Only concerned with Hourly support product id = 1225.
   $got_discount_code = false;
