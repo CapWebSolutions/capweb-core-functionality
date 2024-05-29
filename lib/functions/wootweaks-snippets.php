@@ -104,3 +104,17 @@ function capweb_check_click2code() {
 	}
 }
 add_action('wp_footer', 'capweb_check_click2code');
+
+/**
+ * @snippet       Programmatically Complete Paid WooCommerce Orders
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @testedwith    WooCommerce 3.8
+ * @community     https://businessbloomer.com/club/
+ */
+ 
+ add_filter( 'woocommerce_payment_complete_order_status', 'bbloomer_autocomplete_processing_orders', 9999 );
+ 
+ function bbloomer_autocomplete_processing_orders() {
+	return 'completed';
+ }

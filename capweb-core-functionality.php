@@ -5,7 +5,7 @@
  * Description: This contains all this site's core functionality so that it
  *  is theme independent.
  * 
- * @version: 3.64.1
+ * @version: 3.64.2
  * @author:  Matt Ryan [Cap Web Solutions]
  * @link:    https://capwebsolutions.com
  *
