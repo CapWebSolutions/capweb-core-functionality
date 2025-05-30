@@ -5,9 +5,12 @@
  * Description: This contains all this site's core functionality so that it
  *  is theme independent.
  * 
- * @version: 3.64.2
- * @author:  Matt Ryan [Cap Web Solutions]
- * @link:    https://capwebsolutions.com
+ * @version: 4.0.0
+ * Author: Cap Web Solutions
+ * Author URI: https://capwebsolutions.com
+ * GitHub Plugin URI: https://github.com/CapWebSolutions/capweb-core-functionality
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License version 2, as published
