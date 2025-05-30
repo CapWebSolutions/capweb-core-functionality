@@ -409,3 +409,21 @@ function be_dps_links_new_window( $output ) {
 	return $output;
 }
 add_filter( 'display_posts_shortcode_output', 'be_dps_links_new_window' );
+
+
+// Exclude backup of thumbnails from backups. 
+add_filter( 'updraftplus_exclude_file', 'capweb_updraftplus_exclude_file', 10, 2 );
+
+function capweb_updraftplus_exclude_file( $filter, $file ) {
+    return preg_match( "/-\d+x\d+\.(?:png|jpe?g|bmp|tiff|gif|webp|avif)$/", $file ) ? true : $filter;
+}
+
+// Turn off admin bar for updraftplus
+function updraftplus_remove_toolbar_menu() {
+	
+	global $wp_admin_bar;
+	
+	$wp_admin_bar->remove_menu('updraft_admin_node');
+	
+}
+add_action('wp_before_admin_bar_render', 'updraftplus_remove_toolbar_menu', 999);
