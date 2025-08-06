@@ -191,7 +191,7 @@ class Capweb_Core_Functionality {
 		$this->loader->add_filter( 'display_posts_shortcode_output', $plugin_admin, 'be_dps_links_new_window' );
 
 		// Set up custom shortcode
-		// $this->loader->add_action( 'admin_init', $plugin_admin, 'capweb_add_affiliate_disclaimer_shortcode' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'capweb_add_affiliate_disclaimer_shortcode' );
 
 		// Add default featured image settings page
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_default_featured_image_settings_page' );
@@ -200,21 +200,10 @@ class Capweb_Core_Functionality {
 		$this->loader->add_filter( 'http_request_args', $plugin_admin, 'capweb_core_functionality_hidden', 5, 2 );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'capweb_remove_menus' );
 		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'capweb_admin_bar_items' );
-		// $this->loader->add_filter( 'option_wpseo', $plugin_admin, 'capweb_disable_wpseo_nag' );
-		// $this->loader->add_filter( 'wpseo_use_page_analysis', '__return_false' );
 		$this->loader->add_action( 'init', $plugin_admin, 'add_portfolio_image_size' );
-		// $this->loader->add_filter( 'gform_tabindex', $plugin_admin, 'gform_tabindexer', 10, 2 );
-		// $this->loader->add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
-		// $this->loader->add_filter( 'gform_pre_render', $plugin_admin, 'itsg_check_website_field_value' );
-		// $this->loader->add_filter( 'gform_pre_validation', $plugin_admin, 'itsg_check_website_field_value' );
-		// $this->loader->add_action( 'gform_enqueue_scripts', $plugin_admin, 'capweb_deregister_scripts' );
 		$this->loader->add_action( 'init', $plugin_admin, 'capweb_add_affiliate_disclaimer_shortcode' );
 		$this->loader->add_filter( 'updraftplus_exclude_file', $plugin_admin, 'capweb_updraftplus_exclude_file', 10, 2 );
 		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'updraftplus_remove_toolbar_menu', 999 );
-
-		// Social sharing functionality
-		$this->loader->add_filter( 'simple_social_default_profiles', $plugin_admin, 'capweb_custom_reorder_simple_icons' );
-		// $this->loader->add_filter( 'scriptlesssocialsharing_register', $plugin_admin, 'capweb_scriptless_add_threads_button' );
 
 		// Custom login functionality
 		$this->loader->add_action( 'login_head', $plugin_admin, 'capweb_login_logo' );
@@ -222,7 +211,7 @@ class Capweb_Core_Functionality {
 		$this->loader->add_filter( 'login_redirect', $plugin_admin, 'custom_login_redirect', 10, 3 );
 		$this->loader->add_action( 'init', $plugin_admin, 'hide_admin_bar_from_non_admins' );
 		$this->loader->add_action( 'init', $plugin_admin, 'redirect_non_admin_users' );
-	
+
 	}	
 
 	/**
@@ -248,30 +237,6 @@ class Capweb_Core_Functionality {
 		$this->loader->add_filter( 'post_thumbnail_id', $plugin_public, 'filter_post_thumbnail_id', 10, 2 );
 		$this->loader->add_filter( 'post_thumbnail_url', $plugin_public, 'filter_post_thumbnail_url', 10, 3 );
 		$this->loader->add_filter( 'post_thumbnail_alt', $plugin_public, 'filter_post_thumbnail_alt', 10, 2 );
-
-		// Add public functionality hooks
-		// $this->loader->add_filter( 'the_content', $plugin_public, 'twtreplace' );
-		// $this->loader->add_filter( 'comment_text', $plugin_public, 'twtreplace' );
-		// $this->loader->add_filter( 'wp_headers', $plugin_public, 'wsm_keep_ie_modern' );
-		// $this->loader->add_filter( 'avatar_defaults', $plugin_public, 'add_custom_gravatar' );
-		// $this->loader->add_filter( 'comment_form_defaults', $plugin_public, 'cd_pre_comment_text' );
-		// $this->loader->add_action( 'pre_ping', $plugin_public, 'disable_self_ping' );
-
-		// Remove emoji from loading on every page
-		// $this->loader->add_action( 'wp_head', 'print_emoji_detection_script', 7 );
-		// $this->loader->add_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		// $this->loader->add_action( 'wp_print_styles', 'print_emoji_styles' );
-		// $this->loader->add_action( 'admin_print_styles', 'print_emoji_styles' );
-
-		// Use shortcodes in widgets
-		// $this->loader->add_filter( 'widget_text', 'do_shortcode' );
-
-		// Re-enable links manager
-		// $this->loader->add_filter( 'pre_option_link_manager_enabled', '__return_true' );
-
-		// Prevent Jetpack publicize connections from being auto-selected
-		// $this->loader->add_filter( 'publicize_checkbox_default', '__return_false' );
-
 	}
 
 	/**

@@ -494,32 +494,6 @@ class Capweb_Core_Functionality_Admin {
 	}
 
 	/**
-	 * Disable WPSEO Nag on Dev Server
-	 *
-	 * @param array $options
-	 * @return array
-	 */
-	public function capweb_disable_wpseo_nag( $options ) {
-		if ( strpos( site_url(), 'localhost' ) || strpos( site_url(), 'master-wp' ) ) {
-			$options['ignore_blog_public_warning'] = 'ignore';
-		}
-		return $options;
-	}
-
-	/**
-	 * Force Stupid IE to NOT use compatibility mode
-	 *
-	 * @param array $headers
-	 * @return array
-	 */
-	public function wsm_keep_ie_modern( $headers ) {
-		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && ( strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false ) ) {
-			$headers['X-UA-Compatible'] = 'IE=edge,chrome=1';
-		}
-		return $headers;
-	}
-
-	/**
 	 * Customize search form input box text
 	 *
 	 * @param string $text
@@ -527,18 +501,6 @@ class Capweb_Core_Functionality_Admin {
 	 */
 	public function sp_search_text( $text ) {
 		return esc_attr( 'Search ' . get_bloginfo( $show = '', 'display' ) );
-	}
-
-	/**
-	 * Custom avatar_size
-	 *
-	 * @param array $avatar_defaults
-	 * @return array
-	 */
-	public function add_custom_gravatar( $avatar_defaults ) {
-		$myavatar = get_stylesheet_directory_uri() . '/images/custom-gravatar.jpg';
-		$avatar_defaults[ $myavatar ] = 'Custom Gravatar';
-		return $avatar_defaults;
 	}
 
 	/**
