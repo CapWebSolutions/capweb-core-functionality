@@ -198,8 +198,6 @@ class Capweb_Core_Functionality {
 
 		// Add admin functionality hooks
 		$this->loader->add_filter( 'http_request_args', $plugin_admin, 'capweb_core_functionality_hidden', 5, 2 );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'capweb_remove_menus' );
-		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'capweb_admin_bar_items' );
 		$this->loader->add_action( 'init', $plugin_admin, 'add_portfolio_image_size' );
 		$this->loader->add_action( 'init', $plugin_admin, 'capweb_add_affiliate_disclaimer_shortcode' );
 		$this->loader->add_filter( 'updraftplus_exclude_file', $plugin_admin, 'capweb_updraftplus_exclude_file', 10, 2 );

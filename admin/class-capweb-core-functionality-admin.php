@@ -419,34 +419,6 @@ class Capweb_Core_Functionality_Admin {
 	}
 
 	/**
-	 * Remove Menu Items
-	 * @since 5.0.0
-	 *
-	 * Remove unused menu items by adding them to the array.
-	 *
-	 */
-	public function capweb_remove_menus() {
-		global $menu;
-		$restricted = array( __( 'Links' ) );
-		end( $menu );
-		while ( prev( $menu ) ) {
-			$value = explode( ' ', $menu[ key( $menu ) ][0] );
-			if ( in_array( $value[0] != null ? $value[0] : '', $restricted ) ) {
-				unset( $menu[ key( $menu ) ] );
-			}
-		}
-	}
-
-	/**
-	 * Customize Admin Bar Items
-	 * @since 5.0.0
-	 */
-	public function capweb_admin_bar_items() {
-		global $wp_admin_bar;
-		$wp_admin_bar->remove_menu( 'new-link', 'new-content' );
-	}
-
-	/**
 	 * Pretty Printing
 	 *
 	 * @param mixed $obj
@@ -454,7 +426,7 @@ class Capweb_Core_Functionality_Admin {
 	 * @return void
 	 */
 	public function capweb_pp( $obj, $label = '' ) {
-		$data = json_encode( print_r( $obj, true ) );
+		$data = json_encode( esc_html( print_r( $obj, true ) ) );
 		?>
 		<style type="text/css">
 			#bsdLogger {
@@ -484,7 +456,7 @@ class Capweb_Core_Functionality_Admin {
 				var pre = document.createElement('pre');
 				var h2 = document.createElement('h2');
 				pre.innerHTML = obj;
-				h2.innerHTML = '<?php echo addslashes( $label ); ?>';
+				h2.innerHTML = '<?php echo esc_js( $label ); ?>';
 				logger.appendChild(h2);
 				logger.appendChild(pre);
 			};
@@ -650,7 +622,7 @@ class Capweb_Core_Functionality_Admin {
 	 */
 	public function capweb_scriptless_add_threads_button( $buttons ) {
 		$buttons['tumblr'] = array(
-			'label'    => __( 'Threads', 'scriptless-social-sharing' ),
+			'label'    => __( 'Threads', 'capweb-core-functionality' ),
 			'url_base' => 'https://www.threads.net/share/link',
 			'args'     => array(
 				'query_args' => array(
