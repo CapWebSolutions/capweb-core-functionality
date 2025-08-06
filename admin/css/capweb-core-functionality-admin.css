@@ -1,0 +1,26 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+/* Default Featured Image Settings */
+#default-featured-image-container {
+	margin-bottom: 10px;
+}
+
+#default-featured-image-container img {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 4px;
+	background-color: #f9f9f9;
+}
+
+#select-default-featured-image,
+#remove-default-featured-image {
+	margin-right: 10px;
+}
+
+.form-table th {
+	vertical-align: top;
+	padding-top: 15px;
+}
