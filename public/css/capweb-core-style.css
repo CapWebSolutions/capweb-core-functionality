@@ -1,0 +1,185 @@
+/*
+    User custom styles
+*/
+
+/*  Let's recreate the min needed symple styles for this site. */
+
+.cws-symple-box {
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    background: #333;
+    margin: 0 auto;
+    float: none;
+    display: block;
+    padding: 15px 20px;
+    font-size: 1em;
+    border-radius: 2px;
+    border: 1px solid #999;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* v2 ala Carrie Dils  */
+
+.content-box-blue,
+.content-box-gray,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow {
+    text-align: center;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.content-box-blue {
+    background-color: #d8ecf7;
+    border: 1px solid #afcde3;
+}
+
+.content-box-gray {
+    background-color: #e2e2e2;
+    border: 1px solid #bdbdbd;
+}
+
+.content-box-green {
+    background-color: #d9edc2;
+    border: 1px solid #b2ce96;
+}
+
+.content-box-purple {
+    background-color: #e2e2f9;
+    border: 1px solid #b3b3d9;
+}
+
+.content-box-red {
+    background-color: #f9dbdb;
+    border: 1px solid #e99999;
+}
+
+.content-box-yellow {
+    background-color: #fef5c4;
+    border: 1px solid #f5f136;
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+/* Symple Toggle
+/*-----------------------------------------------------------------------------------*/
+
+#accordion-front,
+#accordian-page-id-1270 {
+    margin-top: 0.3em;
+}
+
+.cws-symple-clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.cws-symple-fadein {
+    opacity: 0;
+}
+
+.cws-symple-toggle .cws-symple-toggle-trigger {
+    display: block;
+    color: #555;
+    padding: 15px 15px 15px 37px;
+    border: 1px solid #ddd;
+    background: #f9f9f9 url("../images/minus.png") no-repeat 15px center;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.cws-symple-toggle .cws-symple-toggle-trigger:hover {
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.cws-symple-toggle .cws-symple-toggle-trigger:active,
+.cws-symple-toggle .cws-symple-toggle-trigger:hover {
+    color: #000;
+    background-color: #eee;
+    background-image: url("../images/plus.png");
+    text-decoration: none;
+}
+
+.cws-symple-toggle .cws-symple-toggle-container {
+    display: none;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-top: none;
+    background: #fff;
+}
+
+.cws-symple-toggle.state-open .cws-symple-toggle-container {
+    display: block;
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+/* Symple Callout
+/*-----------------------------------------------------------------------------------*/
+
+.cws-symple-callout {
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.cws-symple-callout-caption {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cws-symple-callout-button {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.cws-symple-callout-button:hover {
+    background: #555;
+    color: #fff;
+    text-decoration: none;
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+/* General Styles
+/*-----------------------------------------------------------------------------------*/
+
+.form-hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin: 20px 0;
+}
+
+.smallcaps {
+    font-variant: small-caps;
+    font-size: 0.9em;
+}
+
+h4>a::before {
+    content: "► ";
+    color: #666;
+} 
