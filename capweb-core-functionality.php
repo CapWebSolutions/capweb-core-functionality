@@ -4,7 +4,7 @@
  * Plugin Name:       CapWeb Core Functionality
  * Plugin URI:        https://github.com/CapWebSolutions/capweb-core-functionality
  * Description:       This plugin contains all of the site specific functions needed to support capwebsolutions.com.
- * Version:           5.0.1
+ * Version:           5.0.2
  * Author:            Cap Web Solutions | Matt Ryan
  * Author URI:        https://capwebsolutions.com/
  * License:           GPL-2.0+
