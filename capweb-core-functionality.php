@@ -4,7 +4,7 @@
  * Plugin Name:       CapWeb Core Functionality
  * Plugin URI:        https://github.com/CapWebSolutions/capweb-core-functionality
  * Description:       This plugin contains all of the site specific functions needed to support capwebsolutions.com.
- * Version:           5.0.3
+ * Version:           5.0.4
  * Author:            Cap Web Solutions | Matt Ryan
  * Author URI:        https://capwebsolutions.com/
  * License:           GPL-2.0+
@@ -25,10 +25,12 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * @link https://developer.wordpress.org/reference/functions/get_plugin_data/#comment-3030.
  */
-if( ! function_exists('get_plugin_data') ){
-	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( is_admin() ) {
+	if( ! function_exists('get_plugin_data') ) {
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	}
+	define( 'CAPWEB_CORE_FUNCTIONALITY_VERSION', get_plugin_data(__FILE__ )['Version'] );
 }
-define( 'CAPWEB_CORE_FUNCTIONALITY_VERSION', get_plugin_data(__FILE__ )['Version'] );
 
 /**
  * The code that runs during plugin activation.
